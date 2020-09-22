@@ -1,0 +1,17 @@
+{
+    "name": "MySqlPad.Editor",
+    "references": [
+        "GUID:1ce25cf704025094a80bc08b91b425ff"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

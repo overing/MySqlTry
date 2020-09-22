@@ -125,6 +125,12 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "org.cyc.mysqlpad": {
+      "version": "file:MySqlPad",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.androidjni": {
       "version": "1.0.0",
       "depth": 0,

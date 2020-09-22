@@ -1,0 +1,11 @@
+{
+  "name": "org.cyc.mysqlpad",
+  "displayName": "MySqlPad",
+  "version": "0.0.1",
+  "unity": "2018.1",
+  "description": "MySql Tools.",
+  "keywords": [
+    "MySql"
+  ],
+  "category": "Database"
+}
