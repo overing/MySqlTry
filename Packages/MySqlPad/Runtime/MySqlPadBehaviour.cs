@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MySqlPad.Runtime
 {
-    public class MySqlPadBehaviour : MonoBehaviour, IMySqlPadParameter
+    public class MySqlPadBehaviour : MonoBehaviour
     {
         public static void CreateDontDestroyOnLoad() => DontDestroyOnLoad(new GameObject(nameof(MySqlPadBehaviour), typeof(MySqlPadBehaviour)));
 
@@ -11,13 +11,12 @@ namespace MySqlPad.Runtime
 
         ImguiMySqlPad MySqlPad;
 
-        public string ConnectionString { get => Preference.ConnectionString; set => Preference.ConnectionString = value; }
-
-        public string SQL { get => Preference.SQL; set => Preference.SQL = value; }
-
-        void Awake() => MySqlPad = new ImguiMySqlPad(this);
-
-        void OnEnable() => Preference.Load();
+        void OnEnable()
+        {
+            Preference.Load();
+            if (MySqlPad == null)
+                MySqlPad = new ImguiMySqlPad(Preference);
+        }
 
         void OnDisable() => Preference.Save();
 
@@ -27,10 +26,13 @@ namespace MySqlPad.Runtime
     }
 
     [Serializable]
-    public class Preference
+    public class Preference : IMySqlPadParameter
     {
-        public string ConnectionString = "Server=localhost; Port=3306; UserID=root; AllowUserVariables=true;";
+        public string ConnectionString = "Host=localhost; UID=root; AllowUserVariables=true;";
         public string SQL = @"SHOW DATABASES;";
+
+        string IMySqlPadParameter.ConnectionString { get => ConnectionString; set => ConnectionString = value; }
+        string IMySqlPadParameter.SQL { get => SQL; set => SQL = value; }
 
         const string KEY = nameof(Preference);
 

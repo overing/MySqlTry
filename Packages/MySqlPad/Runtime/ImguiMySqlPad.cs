@@ -110,41 +110,39 @@ namespace MySqlPad.Runtime
                 if (GUILayout.Button("Query tables", gui.DontExpandWidth))
                 {
                     Parameters.SQL = @"## query tables of db
-SET @arg_db = 'information_schema';
+SET @db = 'information_schema';
 SELECT
   `TABLE_NAME` AS `Table`,
   `ENGINE` AS `Engine`,
   `TABLE_COLLATION` AS `Collation`
 FROM `information_schema`.`TABLES`
-WHERE `TABLE_SCHEMA` = @arg_db;";
+WHERE `TABLE_SCHEMA` = @db;";
                     OpenTemplateSelection = false;
                 }
                 if (GUILayout.Button("Query columns", gui.DontExpandWidth))
                 {
                     Parameters.SQL = @"## query columns of db.table
-SET @arg_db = 'information_schema';
-SET @arg_table = 'COLUMNS';
+SET @db = 'information_schema';
+SET @table = 'COLUMNS';
 SELECT
   `COLUMN_NAME` AS `Column`,
   `COLUMN_TYPE` AS `Type`,
   `COLLATION_NAME` AS `Collation`
 FROM `information_schema`.`COLUMNS`
-WHERE `TABLE_SCHEMA` = @arg_db
-  AND `TABLE_NAME` = @arg_table;";
+WHERE `TABLE_SCHEMA` = @db AND `TABLE_NAME` = @table;";
                     OpenTemplateSelection = false;
                 }
                 if (GUILayout.Button("Query indexes", gui.DontExpandWidth))
                 {
                     Parameters.SQL = @"## query indexes of db.table
-SET @arg_db = 'information_schema';
-SET @arg_table = 'COLUMNS';
+SET @db = 'information_schema';
+SET @table = 'COLUMNS';
 SELECT
   `INDEX_NAME` AS `Index`,
   `COLUMN_NAME` AS `Column`,
   IF(`NON_UNIQUE`=1, 0, 1) AS `Unique`
 FROM `information_schema`.`STATISTICS`
-WHERE `TABLE_SCHEMA` = @arg_db
-  AND `TABLE_NAME` = @arg_table;";
+WHERE `TABLE_SCHEMA` = @db AND `TABLE_NAME` = @table;";
                     OpenTemplateSelection = false;
                 }
             }
@@ -260,8 +258,8 @@ WHERE `TABLE_SCHEMA` = @arg_db
         public GUIContext(float displayWidth, float displayHeight)
         {
             ColumnNameStyle = new GUIStyle(GUI.skin.textField);
-            ColumnNameStyle.normal.background = Texture2D.grayTexture;
-            ColumnNameStyle.hover.background = Texture2D.grayTexture;
+            ColumnNameStyle.normal.background = Texture2D.blackTexture;
+            ColumnNameStyle.hover.background = Texture2D.blackTexture;
 
             ColumnValueStyle = new GUIStyle(GUI.skin.textField);
 
